@@ -430,6 +430,25 @@ class FromArrayTest extends TestCase
 		self::assertEquals('test', $subject->withExactLength(4)->string('a'));
 	}
 	
+	public function test_string_WithLength_Multibyte()
+	{
+		$subject = new FromArray(['a' => '-']);
+		
+		self::assertNull($subject->withLength(0)->mbstring('a', null));
+		self::assertEquals('-', $subject->withLength(4)->mbstring('a', null));
+		self::assertEquals('-', $subject->withLength(1, 4)->mbstring('a', null));
+		self::assertNull($subject->withLength(20, 25)->mbstring('a', null));
+	}
+	
+	public function test_string_WithExactLength_Multibyte()
+	{
+		$subject = new FromArray(['a' => '-']);
+		
+		self::assertNull($subject->withExactLength(0)->mbstring('a', null));
+		self::assertNull($subject->withExactLength(15)->mbstring('a', null));
+		self::assertEquals('-', $subject->withExactLength(1)->mbstring('a', null));
+	}
+	
 	public function test_regex_NotExists_ReturnDefault()
 	{
 		$subject = new FromArray([]);

@@ -9,6 +9,7 @@ interface IInput
 {
 	public function withLength(int $length, ?int $max = null): IInput;
 	public function withExactLength(int $length): IInput;
+	public function useMultibyte(): IInput;
 	
 	/**
 	 * @param int|float $a
@@ -52,6 +53,7 @@ interface IInput
 	public function float(string $name, ?float $default = null): ?float;
 	public function regex(string $name, string $regex, ?string $default = null): ?string;
 	public function string(string $name, ?string $default = null): ?string;
+	public function mbstring(string $name, ?string $default = null): ?string;
 	public function enum(string $name, $enumValues, ?string $default = null): ?string;
 	
 	public function require(string $name): string;
