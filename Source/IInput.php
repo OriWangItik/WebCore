@@ -9,7 +9,6 @@ interface IInput
 {
 	public function withLength(int $length, ?int $max = null): IInput;
 	public function withExactLength(int $length): IInput;
-	public function useMultibyte(): IInput;
 	
 	/**
 	 * @param int|float $a
